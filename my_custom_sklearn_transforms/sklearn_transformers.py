@@ -1,4 +1,5 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+import numpy as np
 
 
 # All sklearn Transforms must have the `transform` and `fit` methods
@@ -43,6 +44,6 @@ class NewColumns(BaseEstimator, TransformerMixin):
         data['HORAS P CURSO BE']=(data.HOURS_BACKEND)/suma_be
         data['HORAS P CURSO FE']=(data.HOURS_FRONTEND)/suma_fe
         data['HORAS P CURSO']=(data.HOURS_DATASCIENCE+data.HOURS_BACKEND+data.HOURS_FRONTEND)/(suma_ds+suma_be+suma_fe)
-        data=data.replace([np.inf, -np.inf,np.nan],0)
+        data=data.replace([np.inf, -np.inf],0)
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
         return data
