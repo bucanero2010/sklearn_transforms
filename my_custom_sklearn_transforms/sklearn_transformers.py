@@ -45,5 +45,11 @@ class NewColumns(BaseEstimator, TransformerMixin):
         data['HORAS P CURSO FE']=(data.HOURS_FRONTEND)/suma_fe
         data['HORAS P CURSO']=(data.HOURS_DATASCIENCE+data.HOURS_BACKEND+data.HOURS_FRONTEND)/(suma_ds+suma_be+suma_fe)
         data=data.replace([np.inf, -np.inf],0)
+        data['VAR_AVG']=data.iloc[:,9:12].std(axis=1)
+        data['VAR_COURSES']=data.iloc[:,3:9].std(axis=1)
+        data['VAR_HOURS']=data.iloc[:,0:3].std(axis=1)
+        data['MEAN_AVG']=data.iloc[:,9:12].mean(axis=1)
+        data['MEAN_COURSES']=data.iloc[:,3:9].mean(axis=1)
+        data['MEAN_HOURS']=data.iloc[:,0:3].mean(axis=1)
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
         return data
